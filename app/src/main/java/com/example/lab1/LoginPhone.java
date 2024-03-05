@@ -28,7 +28,7 @@ public class LoginPhone extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     public String mVerificationId, numberPhone;
-    Button btnGetOTP;
+    Button btnGetOTP, btnLoginNumber;
 
     EditText edtOTP, edtPhone;
 
@@ -41,6 +41,14 @@ public class LoginPhone extends AppCompatActivity {
         edtOTP=findViewById(R.id.edtOTP);
         edtPhone=findViewById(R.id.edtPhone);
         btnGetOTP=findViewById(R.id.btnGetOTP);
+        btnLoginNumber=findViewById(R.id.btnLoginNumber);
+
+        btnLoginNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verifyOTP(edtOTP.getText().toString());
+            }
+        });
 
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
