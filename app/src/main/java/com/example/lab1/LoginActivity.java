@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         tvQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                email=edtUser.getText().toString();
                 mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
