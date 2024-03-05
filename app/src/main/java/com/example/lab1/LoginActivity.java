@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     String email,pass;
     EditText edtUser,edtPass;
     Button btnLogin, btnSignup2;
+    TextView tvQuenMK;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPass=findViewById(R.id.edtPass);
         btnLogin=findViewById(R.id.btnLogin);
         btnSignup2=findViewById(R.id.btnSignup2);
+        tvQuenMK=findViewById(R.id.quenMk);
 
         btnSignup2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +68,22 @@ public class LoginActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(LoginActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        tvQuenMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra hộp thư để cập nhật lại mật khẩu", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(LoginActivity.this, "Lỗi gửi email", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 

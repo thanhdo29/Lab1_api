@@ -1,5 +1,6 @@
 package com.example.lab1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                finish();
+                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                             } else {
                                 Log.w("Main", "creatUserWithUser:failure", task.getException());
                                 Toast.makeText(SignupActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
